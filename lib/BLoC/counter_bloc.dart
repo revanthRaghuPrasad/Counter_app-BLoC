@@ -28,10 +28,10 @@ class CounterBloc {
     int counter = 0;
     eventStream.listen((event) {
       if (event == CounterAction.Increment)
-        return counter++;
+        counter++;
       else if (event == CounterAction.Decrement)
-        return counter--;
-      else if (event == CounterAction.Reset) return counter = 0;
+        counter--;
+      else if (event == CounterAction.Reset) counter = 0;
 
       counterSink.add(counter);
     });
