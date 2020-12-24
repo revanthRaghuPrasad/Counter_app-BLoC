@@ -32,14 +32,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   final counterBloc = CounterBloc();
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
               stream: counterBloc.counterStream,
               builder: (context, snapshot) {
                 return Text(
-                  '$_counter',
+                  '${snapshot.data}',
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
@@ -68,8 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _counter++;
-          counterBloc.counterSink.add(_counter);
+          counterBloc.eventSink.add(CounterAction.Increment);
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
