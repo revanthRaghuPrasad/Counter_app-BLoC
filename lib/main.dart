@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
               'You have pushed the button this many times:',
             ),
             StreamBuilder(
+              initialData: 0,
               stream: counterBloc.counterStream,
               builder: (context, snapshot) {
                 return Text(
@@ -59,12 +60,34 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          counterBloc.eventSink.add(CounterAction.Increment);
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(left: 40.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                counterBloc.eventSink.add(CounterAction.Increment);
+              },
+              tooltip: 'Increment',
+              child: Icon(Icons.add),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                counterBloc.eventSink.add(CounterAction.Reset);
+              },
+              tooltip: 'Reset',
+              child: Icon(Icons.loop),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                counterBloc.eventSink.add(CounterAction.Decrement);
+              },
+              tooltip: 'Decrement',
+              child: Icon(Icons.remove),
+            )
+          ],
+        ),
       ),
     );
   }
