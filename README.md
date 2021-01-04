@@ -11,7 +11,6 @@ Basic Flutter app designed using BLoC pattern.
     Add this to your package's pubspec.yaml file:
     
     dependencies:
-    
       flutter_bloc: ^6.1.1
     
     
